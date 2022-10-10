@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ City Module for HBNB project """
 from models.base_model import BaseModel, Base
-import os
-from sqlalchemy import Column, String, ForeignKey
+
+from sqlalchemy import Column, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 
@@ -19,6 +19,6 @@ class City(BaseModel, Base):
 
     places = relationship(
         'Place',
-        cascade='all, delete, delete-orphan',
+        cascade='all, delete-orphan',
         backref='cities'
     )
