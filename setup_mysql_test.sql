@@ -1,4 +1,4 @@
--- prepares a MySQL test server for the AirBnb clone
+-- To prepare a MySQL test server for the AirBnb clone
 -- creates a database
 CREATE DATABASE IF NOT EXISTS hbnb_test_db;
 -- create a user and grant privileges
