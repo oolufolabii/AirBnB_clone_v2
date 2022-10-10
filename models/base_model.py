@@ -39,7 +39,8 @@ class BaseModel:
     def __str__(self):
         """Returns a string representation of the instance"""
         dict_instance = self.to_dict()
-        return '[{}] ({}) {}'.format(type(self).__name__, self.id, dict_instance)
+        return '[{}] ({}) {}'.format(type(self).__name__,
+                                     self.id, dict_instance)
 
     def delete(self):
         """Delete BaseModel instance"""
