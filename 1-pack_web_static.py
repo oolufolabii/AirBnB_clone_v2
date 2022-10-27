@@ -7,7 +7,6 @@ from fabric.operations import local
 from datetime import datetime
 
 
-
 def do_pack():
     """archiving all the static files"""
     local("mkdir -p versions")
