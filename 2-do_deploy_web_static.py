@@ -5,7 +5,7 @@ the function do_deploy"""
 
 import os
 from datetime import datetime
-from fabric.api import env, local, put, run, runs_once
+from fabric.api import env, local, put, run
 
 env.user = "ubuntu"
 """user name"""
@@ -13,7 +13,8 @@ env.user = "ubuntu"
 env.hosts = ['18.232.125.137', '100.25.164.73']
 """The host servers IP addresses."""
 
-@runs_once
+
+
 def do_pack():
     """Function to compress files in an archive"""
     local("mkdir -p versions")
