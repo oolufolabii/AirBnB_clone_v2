@@ -5,9 +5,9 @@ from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
 
 
-
 env.hosts = ['18.232.125.137', '100.25.164.73']
 """The host servers IP addresses."""
+
 
 @runs_once
 def do_pack():

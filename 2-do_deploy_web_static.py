@@ -5,7 +5,7 @@ the function do_deploy"""
 
 import os
 from datetime import datetime
-from fabric.api import env, local, put, run
+from fabric.api import env, local, put, run, runs_once
 
 env.user = "ubuntu"
 """user name"""
@@ -14,14 +14,31 @@ env.hosts = ['18.232.125.137', '100.25.164.73']
 """The host servers IP addresses."""
 
 
+def do_the():
+    run("rm")
+
+
+@runs_once
 def do_pack():
-    """Function to compress files in an archive"""
-    local("mkdir -p versions")
-    result = local("tar -cvzf versions/web_static_{}.tgz web_static"
-                   .format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")),
-                   capture=True)
-    if result.failed:
-        return None
+    """Archives the static files."""
+    if not os.path.isdir("versions"):
+        os.mkdir("versions")
+    cur_time = datetime.now()
+    result = "versions/web_static_{}{}{}{}{}{}.tgz".format(
+        cur_time.year,
+        cur_time.month,
+        cur_time.day,
+        cur_time.hour,
+        cur_time.minute,
+        cur_time.second
+    )
+    try:
+        print("Packing web_static to {}".format(result))
+        local("tar -cvzf {} web_static".format(result))
+        archize_size = os.stat(result).st_size
+        print("web_static packed: {} -> {} Bytes".format(result, archize_size))
+    except Exception:
+        result = None
     return result
 
 
