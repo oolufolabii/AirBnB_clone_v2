@@ -14,7 +14,6 @@ env.hosts = ['18.232.125.137', '100.25.164.73']
 """The host servers IP addresses."""
 
 
-
 def do_pack():
     """Function to compress files in an archive"""
     local("mkdir -p versions")
