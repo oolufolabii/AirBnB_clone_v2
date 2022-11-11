@@ -13,8 +13,12 @@ app.url_map.strict_slashes = False
 @app.route('/states_list')
 def state_list():
     """The state list page"""
-    all_state_list = list(storage.all(State).values())
-    return render_template('7-states_list.html', all_state_list)
+    all_states = list(storage.all(State).values())
+    all_states.sort(key=lambda x: x.name)
+    ctxt = {
+        'states': all_states
+    }
+    return render_template('7-states_list.html', **ctxt)
 
 
 @app.teardown_appcontext
@@ -24,4 +28,4 @@ def app_teardown(self):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port='5000')
