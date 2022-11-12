@@ -38,7 +38,6 @@ def states(id=None):
     return render_template('9-states.html', **content)
 
 
-
 @app.teardown_appcontext
 def app_teardown(self):
     """Removes the current SQL Alchemy session"""
